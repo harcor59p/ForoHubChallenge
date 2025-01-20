@@ -18,6 +18,7 @@ public class Curso {
     private Long id;
     private String nombre ;
     private String categoria ;
+    private Boolean activo ;
 
     public Long getId() {
         return id;
@@ -41,5 +42,13 @@ public class Curso {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }

@@ -23,7 +23,9 @@ public record dtoDatosRegistroTopico(
         @NotNull
         Usuario usuario,
         @NotNull
-        Curso curso
+        Curso curso ,
+        @NotBlank
+        Boolean activo
 
 ) {
 }

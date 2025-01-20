@@ -14,7 +14,8 @@ public record dtoDatosActualizarTopico(
         LocalDateTime fechaCreacion ,
         Status status ,
         Usuario usuario,
-        Curso curso
+        Curso curso,
+        Boolean activo
 
 ) {
 }

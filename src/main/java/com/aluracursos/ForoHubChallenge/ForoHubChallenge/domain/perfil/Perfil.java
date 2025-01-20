@@ -18,6 +18,7 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private Boolean activo ;
 
     public Perfil(@Valid dtoDatosRegistroPerfil dtoDatosRegistroPerfil) {
     }
@@ -37,4 +38,25 @@ public class Perfil {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public void actualizarDatos(@Valid dtoDatosActualizarPerfil dtoDatosActualizarPerfil) {
+        if(dtoDatosActualizarPerfil.nombre() != null){
+            this.nombre = dtoDatosActualizarPerfil.nombre();
+        }
+        if(dtoDatosActualizarPerfil.activo() != null){
+            this.activo = dtoDatosActualizarPerfil.activo();
+        }
+
+    }
 }
+
+

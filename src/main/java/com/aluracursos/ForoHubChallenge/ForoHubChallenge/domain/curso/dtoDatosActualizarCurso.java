@@ -6,6 +6,7 @@ public record dtoDatosActualizarCurso(
         @NotBlank
         Long id,
         String nombre ,
-        String categoria
+        String categoria,
+        Boolean activo
 ) {
 }

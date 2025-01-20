@@ -6,6 +6,9 @@ public record dtoDatosRegistroPerfil(
         @NotBlank
         Long id,
         @NotBlank
-        String nombre
+        String nombre,
+        @NotBlank
+        Boolean activo
+
 ) {
 }

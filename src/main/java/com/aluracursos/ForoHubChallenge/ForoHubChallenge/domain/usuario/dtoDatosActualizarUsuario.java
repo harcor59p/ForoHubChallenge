@@ -12,7 +12,8 @@ public record dtoDatosActualizarUsuario(
         @Email
         String email ,
         String Password ,
-        Perfil perfil
+        Perfil perfil ,
+        Boolean activo
 
 ) {
 }

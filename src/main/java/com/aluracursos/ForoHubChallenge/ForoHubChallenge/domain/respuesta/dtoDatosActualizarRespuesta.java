@@ -19,7 +19,8 @@ public record dtoDatosActualizarRespuesta(
         LocalDateTime fechaCreacion ,
         @NotNull
         Usuario usuario,
-        String solucion
+        String solucion ,
+        Boolean activo
 
 ) {
 }

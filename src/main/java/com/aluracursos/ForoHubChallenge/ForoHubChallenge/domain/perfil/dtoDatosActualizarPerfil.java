@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 public record dtoDatosActualizarPerfil(
         @NotBlank
         Long id,
-        String nombre
+        String nombre ,
+        Boolean activo
 ) {
 }

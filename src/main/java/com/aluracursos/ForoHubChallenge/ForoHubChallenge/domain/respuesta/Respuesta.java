@@ -27,6 +27,7 @@ public class Respuesta {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario ;
     private String solucion ;
+    private Boolean activo ;
 
     public Long getId() {
         return id;
@@ -74,5 +75,13 @@ public class Respuesta {
 
     public void setSolucion(String solucion) {
         this.solucion = solucion;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }

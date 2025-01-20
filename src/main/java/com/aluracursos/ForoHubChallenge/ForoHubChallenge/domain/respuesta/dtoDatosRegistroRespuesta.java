@@ -20,7 +20,9 @@ public record dtoDatosRegistroRespuesta(
         LocalDateTime fechaCreacion ,
         @NotNull
         Usuario usuario,
-        String solucion
+        String solucion ,
+        @NotBlank
+        Boolean activo
 
 ) {
 }

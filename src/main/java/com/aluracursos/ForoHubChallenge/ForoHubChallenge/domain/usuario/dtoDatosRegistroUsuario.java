@@ -16,7 +16,9 @@ public record dtoDatosRegistroUsuario(
         @NotNull
         String Password ,
         @NotNull
-        Perfil perfil
+        Perfil perfil ,
+        @NotBlank
+        Boolean activo
 
 ) {
 }

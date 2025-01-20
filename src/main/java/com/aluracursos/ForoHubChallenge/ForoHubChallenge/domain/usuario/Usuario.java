@@ -30,6 +30,7 @@ public class Usuario implements UserDetails {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "perfil_id")
     private Perfil perfil ;
+    private Boolean activo ;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -100,5 +101,13 @@ public class Usuario implements UserDetails {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }

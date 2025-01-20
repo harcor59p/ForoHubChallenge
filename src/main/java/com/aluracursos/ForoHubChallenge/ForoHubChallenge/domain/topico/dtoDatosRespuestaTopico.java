@@ -5,11 +5,8 @@ import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.usuario.Usuario;
 
 import java.time.LocalDateTime;
 
-public record dtoDatosListadoTopico(
+public record dtoDatosRespuestaTopico(
         Long id , String titulo , String mensaje , LocalDateTime fechaCreacion , Status status , Usuario usuario , Curso curso , Boolean activo
 ) {
-    public dtoDatosListadoTopico(Topico topico){
-        this(topico.getId(), topico.getTitulo(), topico.getMensaje() , topico.getFechaCreacion() , topico.getStatus() , topico.getUsuario() , topico.getCurso() , topico.getActivo()) ;
-    }
 
 }

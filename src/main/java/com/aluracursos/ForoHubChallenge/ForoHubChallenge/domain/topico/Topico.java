@@ -32,6 +32,7 @@ public class Topico {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curso_id")
     private Curso curso ;
+    private Boolean activo ;
 
     public Long getId() {
         return id;
@@ -87,5 +88,13 @@ public class Topico {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }

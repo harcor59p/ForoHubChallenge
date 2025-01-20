@@ -8,6 +8,8 @@ public record dtoDatosRegistroCurso(
         @NotBlank
         String nombre ,
         @NotBlank
-        String categoria
+        String categoria ,
+        @NotBlank
+        Boolean activo
 ) {
 }
