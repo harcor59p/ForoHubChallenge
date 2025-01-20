@@ -22,16 +22,17 @@ public class PerfilController {
     private PerfilRepository perfilRepository ;
 
     @PostMapping
-    public ResponseEntity<dtoDatosRespuestaPerfil> registrarPerfil(@RequestBody @Valid dtoDatosRegistroPerfil dtoDatosRegistroPerfil , UriComponentsBuilder uriComponentsBuilder){
-        Perfil perfil = perfilRepository.save(new Perfil(dtoDatosRegistroPerfil)) ;
+    public ResponseEntity<dtoDatosRespuestaPerfil> registrarPerfil(@RequestBody @Valid dtoDatosRegistroPerfil dtoDatosRegistroPerfil
+            , UriComponentsBuilder uriComponentsBuilder){
+        Perfil perfil = perfilRepository.save(new Perfil(dtoDatosRegistroPerfil));
         dtoDatosRespuestaPerfil dtoDatosRespuestaPerfil = new dtoDatosRespuestaPerfil(perfil.getId() , perfil.getNombre() , perfil.getActivo());
-        URI url = uriComponentsBuilder.path("/perfiles/{id}").buildAndExpand(perfil.getId()).toUri();
-        return ResponseEntity.created(url).body(dtoDatosRespuestaPerfil);
+        URI url = uriComponentsBuilder.path("/permiles/{id}").buildAndExpand(perfil.getId()).toUri();
+        return ResponseEntity.created(url).body(dtoDatosRespuestaPerfil) ;
     }
 
     @GetMapping
     public ResponseEntity<Page<dtoDatosListadoPerfil>> listadoPerfiles(@PageableDefault(size = 2) Pageable paginacion) {
-        return (ResponseEntity<Page<dtoDatosListadoPerfil>>) perfilRepository.findAllByActivoTrue(paginacion).map(dtoDatosListadoPerfil::new);
+        return ResponseEntity.ok(perfilRepository.findByActivoTrue(paginacion).map(dtoDatosListadoPerfil::new));
     }
 
     @PutMapping
@@ -48,6 +49,13 @@ public class PerfilController {
         Perfil perfil = perfilRepository.getReferenceById(id);
         perfilRepository.delete(perfil);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<dtoDatosRespuestaPerfil> retornarDatosPerfil(@PathVariable Long id) {
+        Perfil perfil = perfilRepository.getReferenceById(id);
+        var datosPerfil = new dtoDatosRespuestaPerfil(perfil.getId(), perfil.getNombre(), perfil.getActivo());
+        return ResponseEntity.ok(datosPerfil);
     }
 
 }

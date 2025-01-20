@@ -1,10 +1,12 @@
 package com.aluracursos.ForoHubChallenge.ForoHubChallenge.infra.security;
+
 import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.usuario.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
             return JWT.create()
-                    .withIssuer("ForoHubChallenge")
+                    .withIssuer("foroHubChallenge")
                     .withSubject(usuario.getEmail())
                     .withClaim("id", usuario.getId())
                     .withExpiresAt(generarFechaExpiracion())
@@ -40,7 +42,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret); // validando firma
             verifier = JWT.require(algorithm)
-                    .withIssuer("ForoHubChallenge")
+                    .withIssuer("foroHubChallenge")
                     .build()
                     .verify(token);
             verifier.getSubject();

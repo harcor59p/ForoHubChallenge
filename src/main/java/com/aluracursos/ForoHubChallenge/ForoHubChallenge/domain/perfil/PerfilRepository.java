@@ -4,8 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PerfilRepository extends JpaRepository<Perfil, Long> {
-    Page<Perfil> findAllByActivoTrue(Pageable paginacion);
+import java.util.Optional;
 
+public interface PerfilRepository extends JpaRepository<Perfil, Long> {
+
+    Page<Perfil> findByActivoTrue(Pageable paginacion);
 }
 

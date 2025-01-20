@@ -4,10 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record dtoDatosRegistroPerfil(
         @NotBlank
-        Long id,
-        @NotBlank
         String nombre,
-        @NotBlank
         Boolean activo
 
 ) {

@@ -20,6 +20,15 @@ public class Perfil {
     private String nombre;
     private Boolean activo ;
 
+    public Perfil() {
+    }
+
+    public Perfil(Boolean activo, String nombre, Long id) {
+        this.activo = activo;
+        this.nombre = nombre;
+        this.id = id;
+    }
+
     public Perfil(@Valid dtoDatosRegistroPerfil dtoDatosRegistroPerfil) {
     }
 
