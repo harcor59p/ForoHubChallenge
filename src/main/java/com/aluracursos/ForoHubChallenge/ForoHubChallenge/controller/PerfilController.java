@@ -22,13 +22,17 @@ public class PerfilController {
     private PerfilRepository perfilRepository ;
 
     @PostMapping
-    public ResponseEntity<dtoDatosRespuestaPerfil> registrarPerfil(@RequestBody @Valid dtoDatosRegistroPerfil dtoDatosRegistroPerfil
-            , UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<dtoDatosRespuestaPerfil> registrarPerfil(@RequestBody @Valid dtoDatosRegistroPerfil dtoDatosRegistroPerfil,
+                                                                   UriComponentsBuilder uriComponentsBuilder) {
+        // Validación explícita se debe ejecutar
         Perfil perfil = perfilRepository.save(new Perfil(dtoDatosRegistroPerfil));
-        dtoDatosRespuestaPerfil dtoDatosRespuestaPerfil = new dtoDatosRespuestaPerfil(perfil.getId() , perfil.getNombre() , perfil.getActivo());
-        URI url = uriComponentsBuilder.path("/permiles/{id}").buildAndExpand(perfil.getId()).toUri();
-        return ResponseEntity.created(url).body(dtoDatosRespuestaPerfil) ;
+        dtoDatosRespuestaPerfil dtoDatosRespuestaPerfil = new dtoDatosRespuestaPerfil(perfil.getId(), perfil.getNombre(), perfil.getActivo());
+        URI url = uriComponentsBuilder.path("/perfiles/{id}").buildAndExpand(perfil.getId()).toUri();
+        return ResponseEntity.created(url).body(dtoDatosRespuestaPerfil);
     }
+
+
+
 
     @GetMapping
     public ResponseEntity<Page<dtoDatosListadoPerfil>> listadoPerfiles(@PageableDefault(size = 2) Pageable paginacion) {

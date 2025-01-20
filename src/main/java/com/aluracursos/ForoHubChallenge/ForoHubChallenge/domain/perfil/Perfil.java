@@ -23,15 +23,6 @@ public class Perfil {
     public Perfil() {
     }
 
-    public Perfil(Boolean activo, String nombre, Long id) {
-        this.activo = activo;
-        this.nombre = nombre;
-        this.id = id;
-    }
-
-    public Perfil(@Valid dtoDatosRegistroPerfil dtoDatosRegistroPerfil) {
-    }
-
     public Long getId() {
         return id;
     }
@@ -55,6 +46,12 @@ public class Perfil {
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    public Perfil(dtoDatosRegistroPerfil dtoDatosRegistroPerfil) {
+        this.activo = true ;
+        this.nombre = dtoDatosRegistroPerfil.nombre();
+
     }
 
     public void actualizarDatos(@Valid dtoDatosActualizarPerfil dtoDatosActualizarPerfil) {
