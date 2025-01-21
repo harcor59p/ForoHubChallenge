@@ -1,8 +1,11 @@
 package com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.topico;
 
 import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.curso.Curso;
+import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.perfil.dtoDatosActualizarPerfil;
+import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.perfil.dtoDatosRegistroPerfil;
 import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,6 +36,8 @@ public class Topico {
     @JoinColumn(name = "curso_id")
     private Curso curso ;
     private Boolean activo ;
+
+
 
     public Long getId() {
         return id;
@@ -96,5 +101,26 @@ public class Topico {
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    public Topico(dtoDatosRegistroTopico dtoDatosRegistroTopico) {
+        this.activo = true ;
+        this.titulo = dtoDatosRegistroTopico.titulo();
+        this.mensaje = dtoDatosRegistroTopico.mensaje();
+        this.fechaCreacion = dtoDatosRegistroTopico.fechaCreacion() ;
+        this.status = dtoDatosRegistroTopico.status() ;
+        this.curso = dtoDatosRegistroTopico.curso() ;
+
+
+    }
+
+    public void actualizarDatos(@Valid dtoDatosActualizarTopico dtoDatosActualizarTopico) {
+        if(dtoDatosActualizarTopico.titulo() != null){
+            this.titulo() = dtoDatosActualizarTopico.titulo();
+        }
+        if(dtoDatosActualizarTopico.activo() != null){
+            this.activo = dtoDatosActualizarTopico.activo();
+        }
+
     }
 }
