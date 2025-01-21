@@ -9,23 +9,11 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public record dtoDatosRegistroTopico(
-        @NotBlank
-        Long id,
-        @NotBlank
-        String titulo ,
-        @NotBlank
-        String mensaje ,
-        @NotNull
-        @Future
-        LocalDateTime fechaCreacion ,
-        @NotNull
-        Status status ,
-        @NotNull
-        Usuario usuario,
-        @NotNull
-        Curso curso ,
-        @NotBlank
-        Boolean activo
-
+        @NotBlank String titulo,
+        @NotBlank String mensaje,
+        @NotNull @Future LocalDateTime fecha_creacion,
+        @NotNull Status status,
+        @NotNull Long usuario_id,
+        @NotNull Long curso_id
 ) {
 }

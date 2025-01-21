@@ -27,7 +27,7 @@ public class Usuario implements UserDetails {
     private String nombre ;
     private String email;
     private String password;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "perfil_id")
     private Perfil perfil ;
     private Boolean activo ;

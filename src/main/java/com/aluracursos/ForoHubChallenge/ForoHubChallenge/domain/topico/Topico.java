@@ -1,8 +1,5 @@
 package com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.topico;
-
 import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.curso.Curso;
-import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.perfil.dtoDatosActualizarPerfil;
-import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.perfil.dtoDatosRegistroPerfil;
 import com.aluracursos.ForoHubChallenge.ForoHubChallenge.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -16,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "topicos")
 @Entity(name = "Topico")
 @Getter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Topico {
@@ -25,18 +22,20 @@ public class Topico {
     private Long id;
     private String titulo ;
     private String mensaje;
-    private LocalDateTime fechaCreacion ;
+    private LocalDateTime fecha_creacion;
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status ;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario ;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "curso_id")
     private Curso curso ;
     private Boolean activo ;
 
+    public Topico() {
+    }
 
 
     public Long getId() {
@@ -63,12 +62,12 @@ public class Topico {
         this.mensaje = mensaje;
     }
 
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
+    public LocalDateTime getFecha_creacion() {
+        return fecha_creacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setFecha_creacion(LocalDateTime fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
     }
 
     public Status getStatus() {
@@ -103,20 +102,34 @@ public class Topico {
         this.activo = activo;
     }
 
-    public Topico(dtoDatosRegistroTopico dtoDatosRegistroTopico) {
+    public Topico( @Valid dtoDatosRegistroTopico dtoDatosRegistroTopico , Usuario usuario , Curso curso ) {
         this.activo = true ;
         this.titulo = dtoDatosRegistroTopico.titulo();
         this.mensaje = dtoDatosRegistroTopico.mensaje();
-        this.fechaCreacion = dtoDatosRegistroTopico.fechaCreacion() ;
+        this.fecha_creacion = dtoDatosRegistroTopico.fecha_creacion() ;
         this.status = dtoDatosRegistroTopico.status() ;
-        this.curso = dtoDatosRegistroTopico.curso() ;
+        this.usuario = usuario;
+        this.curso = curso ;
 
 
     }
 
+
     public void actualizarDatos(@Valid dtoDatosActualizarTopico dtoDatosActualizarTopico) {
         if(dtoDatosActualizarTopico.titulo() != null){
-            this.titulo() = dtoDatosActualizarTopico.titulo();
+            this.titulo = dtoDatosActualizarTopico.titulo();
+        }
+        if(dtoDatosActualizarTopico.mensaje() != null){
+            this.mensaje = dtoDatosActualizarTopico.mensaje();
+        }
+        if(dtoDatosActualizarTopico.fecha_creacion() != null){
+            this.fecha_creacion = dtoDatosActualizarTopico.fecha_creacion();
+        }
+        if(dtoDatosActualizarTopico.status() != null){
+            this.status = dtoDatosActualizarTopico.status();
+        }
+        if(dtoDatosActualizarTopico.curso() != null){
+            this.curso = dtoDatosActualizarTopico.curso();
         }
         if(dtoDatosActualizarTopico.activo() != null){
             this.activo = dtoDatosActualizarTopico.activo();

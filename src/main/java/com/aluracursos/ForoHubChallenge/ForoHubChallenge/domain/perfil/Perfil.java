@@ -9,7 +9,7 @@ import lombok.*;
 @Entity(name = "Perfil")
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Perfil {
