@@ -46,7 +46,7 @@ public class TopicolController {
     public ResponseEntity<dtoDatosRespuestaTopico> actualizarTopico(@RequestBody @Valid dtoDatosActualizarTopico dtoDatosActualizarTopico){
         Topico topico = topicoRepository.getReferenceById(dtoDatosActualizarTopico.id());
         topico.actualizarDatos(dtoDatosActualizarTopico) ;
-        return ResponseEntity.ok(new dtoDatosRespuestaTopico(topico.getId() , topico.getNombre(), topico.getActivo()));
+        return ResponseEntity.ok(new dtoDatosRespuestaTopico(topico.getId() , topico.getTitulo(), topico.getActivo()));
     }
 
     @DeleteMapping("/{id}")
